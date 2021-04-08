@@ -86,8 +86,6 @@ img {
 /* Header */
 
 header {
-  padding-top: 32px;
-  padding-bottom: 32px;
   border-bottom: 1px solid var(--header-border-color);
 }
 
@@ -131,6 +129,14 @@ header {
   color: var(--accent-color);
 }
 
+.nav-item {
+  position: relative;
+
+  display: block;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
 .nav-link,
 .contact-link {
   font-weight: 500;
@@ -150,6 +156,21 @@ header {
 .nav-link.current {
   outline: none;
   color: var(--accent-color);
+}
+
+.current::after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  content: '';
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--accent-color);
+  background-repeat: no-repeat;
 }
 
 .contact-link {
@@ -266,6 +287,40 @@ header {
 
 .work-item {
   --grid-item: 3;
+}
+
+.work-item-thumb {
+  position: relative;
+}
+
+.work-item-thumb::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+
+  content: '';
+  display: block;
+  width: 100%;
+  height: 70px;
+  background-color: rgba(47, 48, 58, 0.8);
+}
+
+.work-item-name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 27px;
+  z-index: 2;
+
+  text-align: center;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  text-transform: uppercase;
+
+  color: var(--dark-bg-text-color);
 }
 
 /* Команда */
@@ -495,6 +550,8 @@ header {
 }
 
 .example-link {
+  position: relative;
+
   display: block;
 }
 
@@ -517,4 +574,97 @@ header {
   line-height: 2;
   letter-spacing: 0.06em;
   color: var(--title-color);
+}
+
+.exapmle-img-thumb {
+  position: relative;
+}
+
+.exapmle-img-thumb::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0;
+
+  content: '';
+  background-color: rgba(33, 150, 243, 0.9);
+}
+
+.example-img-text {
+  position: absolute;
+  top: 63px;
+  bottom: 63px;
+  right: 24px;
+  left: 24px;
+  z-index: 2;
+  opacity: 0;
+
+  font-size: 18px;
+  line-height: 1.56;
+  color: var(--dark-bg-text-color);
+}
+
+.example-link:hover .exapmle-img-thumb::before,
+.example-link:focus .exapmle-img-thumb::before,
+.example-link:hover .example-img-text,
+.example-link:focus .example-img-text {
+  opacity: 1;
+}
+
+/* Модальное окно */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  width: 528px;
+  height: 581px;
+
+  background-color: var(--dark-bg-text-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.modal-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+
+  background-color: var(--dark-bg-text-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  outline: none;
+}
+
+.modal-button-icon {
+  fill: var(--bg-border-color);
 }
